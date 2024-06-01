@@ -30,10 +30,13 @@
 
   <script>
     let myDestinations;
+    let HOST="https://michalhir.github.io/lesson14Server/"
     // axios.get('http://localhost:3000/myDestinations')
     async function getDestinations() {
+      // const response = await axios.get(
+      //   'http://localhost:3000/myDestinations'
       const response = await axios.get(
-        'http://localhost:3000/myDestinations'
+        "https://michalhir.github.io/lesson14Server/"
       ); //request
       myDestinations = response.data;
       display2.innerHTML = myDestinations.map(
@@ -97,12 +100,14 @@
         image: image.value, //'https://picsum.photos/seed/${element}/40/20',
         score: score.value,
       };
-      axios.post(`http://localhost:3000/myDestinations`, newDestination3);
+      // axios.post(`http://localhost:3000/myDestinations`, newDestination3);
+      axios.post("https://michalhir.github.io/lesson14Server/", newDestination3);
     }
 
     async function deleteDes(desId) {
       //DELETE /posts/:id 
-      const response = await axios.delete(`http://localhost:3000/myDestinations/${desId}`)
+      //const response = await axios.delete(`http://localhost:3000/myDestinations/${desId}`)
+      const response = await axios.delete(`https://michalhir.github.io/lesson14Server/${desId}`)
     }
 
     async function editDes(desId) {
@@ -116,8 +121,12 @@
         image: image.value, //'https://picsum.photos/seed/${element}/40/20',
         score: score.value,
       };
+      // const response = await axios.put(
+      //   `http://localhost:3000/myDestinations/${String(desId)}`,
+      //   updatedData
+      // );
       const response = await axios.put(
-        `http://localhost:3000/myDestinations/${String(desId)}`,
+        `https://michalhir.github.io/lesson14Server/${String(desId)}`,
         updatedData
       );
     }
