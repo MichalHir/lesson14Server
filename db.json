@@ -15,13 +15,6 @@
       "score": "KL"
     },
     {
-      "id": "b923",
-      "name": " M",
-      "description": " M",
-      "image": "MK",
-      "score": "KL"
-    },
-    {
       "id": "0eb7",
       "name": " M",
       "description": " M",
@@ -83,27 +76,6 @@
       "description": " M",
       "image": "MK",
       "score": "KL"
-    },
-    {
-      "id": "e46e",
-      "name": " M",
-      "description": " M",
-      "image": "MK",
-      "score": "KL"
-    },
-    {
-      "id": "28b3",
-      "name": " M",
-      "description": " M",
-      "image": "MK",
-      "score": "KL"
-    },
-    {
-      "id": "8c09",
-      "name": "",
-      "description": "",
-      "image": "",
-      "score": ""
     }
   ]
 }
