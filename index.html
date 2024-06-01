@@ -38,7 +38,6 @@
   -->
 
   <div class="input-group mb-3">
-    
     <input type="text" class="form-control" id="name1" placeholder="destination name" style="width: 400px;">
     <input type="text" class="form-control" id="score" placeholder="destination score" style="width: 400px;">
     <input type="text" class="form-control" id="image" placeholder="destination image" style="width: 400px;">
@@ -46,20 +45,23 @@
       style="width: 400px;">
   </div>
   </div>
+
   <div>
-    
     <button onclick="addNewDestination()" class="btn btn-info">add new</button>
   </div>
+
   <div id="display2"></div>
 
   <script>
     let myDestinations = [];
     const HOST = "https://michalhir.github.io/lesson14Server/"
+
     async function getDestinations() {
       const response = await axios.get(
-        `${HOST}`
+        "https://michalhir.github.io/lesson14Server/"
       ); 
-      myDestinations = response.data;
+      //myDestinations = response.data;
+      myDestinations = axios.get("https://michalhir.github.io/lesson14Server/")
       let finalStr = "";
         for (let i = 0; i < myDestinations.length; i++) {
           const destinationStr = `
@@ -70,13 +72,13 @@
                         <h5 class="card-title">${myDestinations[i].name} - ${myDestinations[i].score}</h5>
                         <p class="card-text">${myDestinations[i].description}</p>
                         <button class="btn btn-danger" onclick="deleteDes('${myDestinations[i].id}')">Delete</button>
-                        <button class="btn btn-primary" onclick="editDes(${i})">Edit</button>
+                        <button class="btn btn-primary" onclick="editDes('${myDestinations[i].id}')">Edit</button>
                     </div>
                 </div>
                 </div>`;
           finalStr = finalStr + destinationStr;
         }
-        display.innerHTML = finalStr;
+        return (finalStr);
     }
     getDestinations();
 
