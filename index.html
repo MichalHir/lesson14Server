@@ -53,22 +53,30 @@
   <div id="display2"></div>
 
   <script>
-    let myDestinations;
+    let myDestinations = [];
+    const HOST = "https://michalhir.github.io/lesson14Server/"
     async function getDestinations() {
       const response = await axios.get(
-        'http://localhost:3000/myDestinations'
+        `${HOST}`
       ); 
       myDestinations = response.data;
-      display2.innerHTML = myDestinations.map(
-        (destinations) =>
-          `<div class="card" style="width: 18rem;">
-  <img src="${destinations.image}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <p class="card-text">Name:${destinations.name} - Score:${destinations.score} <br>
-      Descriptionn:${destinations.description} <br> <button onclick="deleteDes('${(destinations.id).toString()}')" class="btn btn-secondary">delete</button><button onclick="editDes('${(destinations.id).toString()}')" class="btn btn-secondary">edit</button></p>
-  </div>
-</div>`
-      ); 
+      let finalStr = "";
+        for (let i = 0; i < myDestinations.length; i++) {
+          const destinationStr = `
+                <div class="col">
+                <div class="card" style="width: 18rem;max-width: 200px;">
+                    <img src="${myDestinations[i].image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${myDestinations[i].name} - ${myDestinations[i].score}</h5>
+                        <p class="card-text">${myDestinations[i].description}</p>
+                        <button class="btn btn-danger" onclick="deleteDestination('${myDestinations[i].id}')">Delete</button>
+                        <button class="btn btn-primary" onclick="editDestination(${i})">Edit</button>
+                    </div>
+                </div>
+                </div>`;
+          finalStr = finalStr + destinationStr;
+        }
+        display.innerHTML = finalStr;
     }
     getDestinations();
 
@@ -79,12 +87,12 @@
         image: image.value, //'https://picsum.photos/seed/${element}/40/20',
         score: score.value,
       };
-      axios.post(`http://localhost:3000/myDestinations`, newDestination3);
+      axios.post(`${HOST}`, newDestination3);
     }
 
     async function deleteDes(desId) {
       //DELETE /posts/:id 
-      const response = await axios.delete(`http://localhost:3000/myDestinations/${desId}`)
+      const response = await axios.delete(`${HOST}/${desId}`)
     }
 
     async function editDes(desId) {
@@ -97,7 +105,7 @@
         score: score.value,
       };
       const response = await axios.put(
-        `http://localhost:3000/myDestinations/${String(desId)}`,
+        `${HOST}/${String(desId)}`,
         updatedData
       );
     }
